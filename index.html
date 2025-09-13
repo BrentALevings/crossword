@@ -149,6 +149,13 @@
             top: 1rem;
             cursor: pointer;
         }
+
+        #btnShow {
+            position: absolute;
+            left: 2rem;
+            top: 1rem;
+            cursor: pointer;
+        }
     </style>
 </head>
 <div class="container crosswordDisplay">
@@ -958,10 +965,16 @@
     }
 
     function showAnswers() {
+        if (!boardMap) return;
+        for (let i = 0; i < boardMap.length; i++) {
+        const c = boardMap[i];
+        
+        if (!c.value) continue;
         const input = document.querySelectorAll(".char")[i];
         input.value = "";
         input.style.backgroundColor = "";
         input.placeholder = c.value; // optional: show letters as placeholders
+        }
     }
 
     // Attach to buttons
