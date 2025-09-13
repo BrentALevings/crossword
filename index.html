@@ -160,6 +160,7 @@
 
         <div class="btn btn-default" id="btnReset">Reset</div>
         <div class="btn btn-default" id="btnCheck">Check Answers</div>
+        <div class="btn btn-default" id="btnShow">Show Answers</div>
     </div>
     <div class="center crossword" id="crossword"></div>
     <div class="btn" id="btnGen">Generate</div>
@@ -953,16 +954,24 @@
         const input = document.querySelectorAll(".char")[i];
         input.value = "";
         input.style.backgroundColor = "";
-        input.placeholder = c.value; // optional: show letters as placeholders
         }
+    }
+
+    function showAnswers() {
+        const input = document.querySelectorAll(".char")[i];
+        input.value = "";
+        input.style.backgroundColor = "";
+        input.placeholder = c.value; // optional: show letters as placeholders
     }
 
     // Attach to buttons
     const btnCheck = document.getElementById("btnCheck");
     const btnReset = document.getElementById("btnReset");
+    const btnShow = document.getElementById("btnShow");
 
     btnCheck.addEventListener("click", checkAnswers);
     btnReset.addEventListener("click", resetBoard);
+    btnShow.addEventListener("click", showAnswers);
 </script>
 
 </html>
