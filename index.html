@@ -920,20 +920,49 @@
     Play();
 
 
-    //==================================================//
+    //---------------------------------//
+    // CHECK ANSWERS AND RESET LOGIC  //
+    //---------------------------------//
 
-    $("#btnCheck").click(function () {
-        $(".square input").each(function () {
-            if (!($(this).attr('data-letter') === ($(this).val().toUpperCase()))) {
-                console.log('incorrect');
-                $(this).val('');
-            }
-        });
-    });
+    function checkAnswers() {
+        if (!boardMap) return;
+        for (let i = 0; i < boardMap.length; i++) {
+        const c = boardMap[i];
+        if (!c.value) continue;
 
-    $('#btnReset').click(function () {
-        location.reload();
-    });
+        const input = document.querySelectorAll(".char")[i];
+        const userVal = input.value.toUpperCase();
+        const correctVal = c.value.toUpperCase();
+
+        if (userVal === "") {
+            input.style.backgroundColor = "";
+        } else if (userVal === correctVal) {
+            input.style.backgroundColor = "lightgreen";
+        } else {
+            input.style.backgroundColor = "salmon";
+        }
+        }
+    }
+
+    function resetBoard() {
+        if (!boardMap) return;
+        for (let i = 0; i < boardMap.length; i++) {
+        const c = boardMap[i];
+        if (!c.value) continue;
+
+        const input = document.querySelectorAll(".char")[i];
+        input.value = "";
+        input.style.backgroundColor = "";
+        input.placeholder = c.value; // optional: show letters as placeholders
+        }
+    }
+
+    // Attach to buttons
+    const btnCheck = document.getElementById("btnCheck");
+    const btnReset = document.getElementById("btnReset");
+
+    btnCheck.addEventListener("click", checkAnswers);
+    btnReset.addEventListener("click", resetBoard);
 </script>
 
 </html>
