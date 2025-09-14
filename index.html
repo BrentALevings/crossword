@@ -13,7 +13,7 @@
         }
 
         .crosswordDisplay {
-            top: 5rem;
+            top: 3rem;
         }
 
         .clueBlock {
@@ -67,7 +67,7 @@
 
         .crossword {
             display: block;
-            background-color: rgb(32, 32, 32);
+            background-color: rgb(255, 255, 255);
         }
 
         .square {
@@ -139,22 +139,32 @@
         #btnCheck {
             position: absolute;
             right: 2rem;
-            top: 1rem;
+            top: 2rem;
             cursor: pointer;
+            color: black;
         }
 
         #btnReset {
             position: absolute;
             left: 2rem;
-            top: 1rem;
+            top: 2rem;
             cursor: pointer;
+            color: black;
         }
 
         #btnShow {
             position: absolute;
             left: 12rem;
-            top: 1rem;
+            top: 2rem;
             cursor: pointer;
+            color: black;
+        }
+
+        input {
+            padding: 6px 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            width: 250px;
         }
     </style>
 </head>
@@ -168,6 +178,13 @@
         <div class="btn btn-default" id="btnReset">Reset</div>
         <div class="btn btn-default" id="btnCheck">Check Answers</div>
         <div class="btn btn-default" id="btnShow">Show Answers</div>
+    </div>
+    <div class="form">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" class="name" placeholder="Name" />
+
+        <label for="contact">Contact:</label>
+        <input type="text" id="contact" class="contact" placeholder="Contact" />
     </div>
     <div class="center crossword" id="crossword"></div>
     <div class="btn" id="btnGen">Generate</div>
@@ -185,8 +202,7 @@
             <div class="line">
                 <input class="word" type="text" value="ROM" />
                 <span class="lineNum"></span>
-                <input class="clue" 
-                    value="Clinical measure of how far a joint can move. (3)" />
+                <input class="clue" value="Clinical measure of how far a joint can move. (3)" />
             </div>
 
             <div class="line">
@@ -199,15 +215,13 @@
             <div class="line">
                 <input class="word" type="text" value="RESTINGSPLINT" />
                 <span class="lineNum"></span>
-                <input class="clue" 
-                    value="Orthosis prescribed to immobilize and protect joints. (13)" />
+                <input class="clue" value="Orthosis prescribed to immobilize and protect joints. (13)" />
             </div>
 
             <div class="line">
                 <input class="word" type="text" value="ASSISTIVEDEVICES" />
                 <span class="lineNum"></span>
-                <input class="clue" 
-                    value="Tools that promote independence. (eg: built-up grip) (16)" />
+                <input class="clue" value="Tools that promote independence. (eg: built-up grip) (16)" />
             </div>
 
             <div class="line">
@@ -229,7 +243,7 @@
                 <input class="clue"
                     value="The approach OTs take, addressing body, mind, and environment together. (8)" />
             </div>
-            
+
             <div class="line">
                 <input class="word" type="text" value="THERABAND" />
                 <span class="lineNum"></span>
@@ -935,45 +949,45 @@
     function checkAnswers() {
         if (!boardMap) return;
         for (let i = 0; i < boardMap.length; i++) {
-        const c = boardMap[i];
-        if (!c.value) continue;
+            const c = boardMap[i];
+            if (!c.value) continue;
 
-        const input = document.querySelectorAll(".char")[i];
-        const userVal = input.value.toUpperCase();
-        const correctVal = c.value.toUpperCase();
+            const input = document.querySelectorAll(".char")[i];
+            const userVal = input.value.toUpperCase();
+            const correctVal = c.value.toUpperCase();
 
-        if (userVal === "") {
-            input.style.backgroundColor = "";
-        } else if (userVal === correctVal) {
-            input.style.backgroundColor = "lightgreen";
-        } else {
-            input.style.backgroundColor = "salmon";
-        }
+            if (userVal === "") {
+                input.style.backgroundColor = "";
+            } else if (userVal === correctVal) {
+                input.style.backgroundColor = "lightgreen";
+            } else {
+                input.style.backgroundColor = "salmon";
+            }
         }
     }
 
     function resetBoard() {
         if (!boardMap) return;
         for (let i = 0; i < boardMap.length; i++) {
-        const c = boardMap[i];
-        if (!c.value) continue;
+            const c = boardMap[i];
+            if (!c.value) continue;
 
-        const input = document.querySelectorAll(".char")[i];
-        input.value = "";
-        input.style.backgroundColor = "";
+            const input = document.querySelectorAll(".char")[i];
+            input.value = "";
+            input.style.backgroundColor = "";
         }
     }
 
     function showAnswers() {
         if (!boardMap) return;
         for (let i = 0; i < boardMap.length; i++) {
-        const c = boardMap[i];
+            const c = boardMap[i];
 
-        if (!c.value) continue;
-        const input = document.querySelectorAll(".char")[i];
-        input.value = "";
-        input.style.backgroundColor = "";
-        input.placeholder = c.value; // optional: show letters as placeholders
+            if (!c.value) continue;
+            const input = document.querySelectorAll(".char")[i];
+            input.value = "";
+            input.style.backgroundColor = "";
+            input.placeholder = c.value; // optional: show letters as placeholders
         }
     }
 
