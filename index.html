@@ -448,6 +448,7 @@
     var board, wordArr, wordBank, wordsActive, boardMap,
         focusChar, focusIndex = null, mode,
         wordElementsAcross, wordElementsDown;
+    var activeDirection = null; // 0 for ACROSS, 1 for DOWN
 
     var answers = [];
 
@@ -480,19 +481,60 @@
         for (var i = 0; i < charEleArr.length; i++) {
             RegisterChar(charEleArr[i], boardMap[i]);
             charEleArr[i].placeholder = "";
-            // Attach robust auto-advance event handler
+
+            // Set activeDirection only on user-initiated focus
+            function setDirectionHandler(e) {
+                var allChars = document.getElementsByClassName('char');
+                var idx = Array.prototype.indexOf.call(allChars, this);
+                var boardChar = boardMap[idx];
+                var direction = null;
+                if (boardChar.char.length === 1) {
+                    direction = wordsActive[boardChar.char[0].wordIndex].dir;
+                } else {
+                    var activeChar = boardChar.char[0];
+                    if (typeof focusChar !== 'undefined' && focusChar) {
+                        activeChar = focusChar;
+                    }
+                    direction = wordsActive[activeChar.wordIndex].dir;
+                }
+                activeDirection = direction;
+            }
+            charEleArr[i].addEventListener('mousedown', setDirectionHandler);
+            charEleArr[i].addEventListener('touchstart', setDirectionHandler);
+            charEleArr[i].addEventListener('keydown', function(e) {
+                // Tab or arrow keys
+                if (e.key === 'Tab' || e.key === 'ArrowRight' || e.key === 'ArrowLeft' || e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+                    setDirectionHandler.call(this, e);
+                }
+            });
+
             charEleArr[i].addEventListener('input', function(e) {
                 // Only allow one character
                 if (this.value.length > 1) {
                     this.value = this.value[0].toUpperCase();
                 }
-                // Move to next cell if a character is present
                 if (this.value.length === 1) {
-                    // Find current index
                     var allChars = document.getElementsByClassName('char');
                     var idx = Array.prototype.indexOf.call(allChars, this);
-                    if (idx < allChars.length - 1) {
-                        allChars[idx + 1].focus();
+                    var boardChar = boardMap[idx];
+                    var nextIdx = null;
+                    if (activeDirection === 0) {
+                        // ACROSS
+                        var wordObj = wordsActive[boardChar.char.find(c => wordsActive[c.wordIndex].dir === 0).wordIndex];
+                        var pos = wordObj.gridIndices.indexOf(idx);
+                        if (pos < wordObj.gridIndices.length - 1) {
+                            nextIdx = wordObj.gridIndices[pos + 1];
+                        }
+                    } else if (activeDirection === 1) {
+                        // DOWN
+                        var wordObj = wordsActive[boardChar.char.find(c => wordsActive[c.wordIndex].dir === 1).wordIndex];
+                        var pos = wordObj.gridIndices.indexOf(idx);
+                        if (pos < wordObj.gridIndices.length - 1) {
+                            nextIdx = wordObj.gridIndices[pos + 1];
+                        }
+                    }
+                    if (nextIdx !== null) {
+                        allChars[nextIdx].focus();
                     }
                 }
             });
