@@ -480,6 +480,22 @@
         for (var i = 0; i < charEleArr.length; i++) {
             RegisterChar(charEleArr[i], boardMap[i]);
             charEleArr[i].placeholder = "";
+            // Attach robust auto-advance event handler
+            charEleArr[i].addEventListener('input', function(e) {
+                // Only allow one character
+                if (this.value.length > 1) {
+                    this.value = this.value[0].toUpperCase();
+                }
+                // Move to next cell if a character is present
+                if (this.value.length === 1) {
+                    // Find current index
+                    var allChars = document.getElementsByClassName('char');
+                    var idx = Array.prototype.indexOf.call(allChars, this);
+                    if (idx < allChars.length - 1) {
+                        allChars[idx + 1].focus();
+                    }
+                }
+            });
         }
 
         ToggleInputBoxes(false);
