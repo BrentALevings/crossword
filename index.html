@@ -13,7 +13,7 @@
         }
 
         .crosswordDisplay {
-            top: 3rem;
+            top: 5rem;
         }
 
         .clueBlock {
@@ -137,25 +137,9 @@
             background-color: rgb(150, 150, 150);
         }
 
-        #btnCheck {
+        #btnSubmit {
             position: absolute;
             right: 2rem;
-            top: 2rem;
-            cursor: pointer;
-            color: black;
-        }
-
-        #btnReset {
-            position: absolute;
-            left: 2rem;
-            top: 2rem;
-            cursor: pointer;
-            color: black;
-        }
-
-        #btnShow {
-            position: absolute;
-            left: 12rem;
             top: 2rem;
             cursor: pointer;
             color: black;
@@ -266,10 +250,7 @@
             }
 
             /* Hide the buttons when printing */
-            #printBtn,
-            #btnReset,
-            #btnCheck,
-            #btnShow,
+            #btnSubmit,
             .top-right-buttons {
                 display: none !important;
             }
@@ -296,8 +277,13 @@
             background: #45a049;
         }
 
+        .qrCode {
+            left: 5pt;
+            text-align: left;
+        }
     </style>
 </head>
+<img src="assets/qr_code.png" id="qrCode" height="120pt">
 <div class="container crosswordDisplay">
     <button id="printBtn">Print / Save as PDF</button>
 
@@ -306,9 +292,7 @@
         <div class="btn btn-default disabled" id="btnCreate">Create</div>
         <div class="btn btn-default disabled" id="btnPlay">Play</div>
 
-        <div class="btn btn-default" id="btnReset">Reset</div>
-        <div class="btn btn-default" id="btnCheck">Check Answers</div>
-        <div class="btn btn-default" id="btnShow">Show Answers</div>
+        <div class="btn btn-default" id="btnSubmit">Submit Answers</div>
     </div>
     <div class="form">
         <label for="name">Full Name:</label>
@@ -337,56 +321,15 @@
             </div>
 
             <div class="line">
-                <input class="word" type="text" value="OCCUPATION" />
+                <input class="word" type="text" value="SPLINT" />
                 <span class="lineNum"></span>
-                <input class="clue"
-                    value="The central concept in OT; what gives meaning and purpose to daily life. (10)" />
+                <input class="clue" value="Thermoplastic device fabricated to immobilize and protect joints. (6)" />
             </div>
 
             <div class="line">
-                <input class="word" type="text" value="RESTINGSPLINT" />
+                <input class="word" type="text" value="ASSISTIVEDEVICE" />
                 <span class="lineNum"></span>
-                <input class="clue" value="Orthosis prescribed to immobilize and protect joints. (13)" />
-            </div>
-
-            <div class="line">
-                <input class="word" type="text" value="ASSISTIVEDEVICES" />
-                <span class="lineNum"></span>
-                <input class="clue" value="Tools that promote independence. (eg: built-up grip) (16)" />
-            </div>
-
-            <div class="line">
-                <input class="word" type="text" value="LEISURE" />
-                <span class="lineNum"></span>
-                <input class="clue"
-                    value="Chosen activities that provide enjoyment and restoration, often disrupted after illness or injury. (7)" />
-            </div>
-
-            <div class="line">
-                <input class="word" type="text" value="REACHER" />
-                <span class="lineNum"></span>
-                <input class="clue" value="A tool used to grasp objects without bending or overexertion. (7)" />
-            </div>
-
-            <div class="line">
-                <input class="word" type="text" value="HOLISTIC" />
-                <span class="lineNum"></span>
-                <input class="clue"
-                    value="The approach OTs take, addressing body, mind, and environment together. (8)" />
-            </div>
-
-            <div class="line">
-                <input class="word" type="text" value="THERABAND" />
-                <span class="lineNum"></span>
-                <input class="clue"
-                    value="Elastic resistance tool used in graded strengthening and rehabilitation exercises. (9)" />
-            </div>
-
-            <div class="line">
-                <input class="word" type="text" value="TRANSFERBOARD" />
-                <span class="lineNum"></span>
-                <input class="clue"
-                    value="Device that enables safe movement between surfaces, such as bed to wheelchair. (13)" />
+                <input class="clue" value="A tool that promotes independence. (eg: built-up grip) (16)" />
             </div>
         </div>
     </div>
@@ -396,89 +339,39 @@
             <div class="line">
                 <input class="word" type="text" value="ADL" />
                 <span class="lineNum"></span>
-                <input class="clue"
-                    value="Everyday tasks like dressing or bathing that OTs often assess and retrain. (3)" />
-            </div>
-
-            <div class="line">
-                <input class="word" type="text" value="COGNITION" />
-                <span class="lineNum"></span>
-                <input class="clue"
-                    value="Mental processes such as memory and attention that impact occupational performance. (9)" />
+                <input class="clue" value="Everyday tasks. (3)" />
             </div>
 
             <div class="line">
                 <input class="word" type="text" value="WHEELCHAIR" />
                 <span class="lineNum"></span>
-                <input class="clue"
-                    value="Mobility solution that may require postural support and custom seating. (10)" />
+                <input class="clue" value="Mobility solution. (10)" />
             </div>
 
             <div class="line">
-                <input class="word" type="text" value="DYNAMOMETER" />
+                <input class="word" type="text" value="TOUCH" />
                 <span class="lineNum"></span>
-                <input class="clue" value="Instrument used by OTs to objectively measure grip strength. (11)" />
+                <input class="clue" value="The tactile sensory system detects _____. (5)" />
             </div>
 
             <div class="line">
-                <input class="word" type="text" value="TBI" />
-                <span class="lineNum"></span>
-                <input class="clue"
-                    value="Injury that can cause lasting physical, cognitive, and behavioral changes. (3)" />
-            </div>
-
-            <div class="line">
-                <input class="word" type="text" value="ETI" />
+                <input class="word" type="text" value="DEVELOPMENTAL" />
                 <span class="lineNum"></span>
                 <input class="clue"
-                    value="Common hand trauma affecting finger extension, often requiring splinting and therapy. (3)" />
+                    value="Children presenting with malnutrition often struggle to achieve ______________ milestones. (13)" />
             </div>
 
             <div class="line">
-                <input class="word" type="text" value="OTASA" />
+                <input class="word" type="text" value="TRANSFER" />
+                <span class="lineNum"></span>
+                <input class="clue" value="Moving from the bed to a wheelchair is called a ______________. (8)" />
+            </div>
+
+            <div class="line">
+                <input class="word" type="text" value="INDEPENDENCE" />
                 <span class="lineNum"></span>
                 <input class="clue"
-                    value="National association representing Occupational Therapists in South Africa. (5)" />
-            </div>
-
-            <div class="line">
-                <input class="word" type="text" value="VOC" />
-                <span class="lineNum"></span>
-                <input class="clue" value="Abbreviation for rehab focus on employment readiness and skills. (5)" />
-            </div>
-
-            <div class="line">
-                <input class="word" type="text" value="PEDIATRICS" />
-                <span class="lineNum"></span>
-                <input class="clue" value="OT practice area supporting developmental milestones in children. (10)" />
-            </div>
-
-            <div class="line">
-                <input class="word" type="text" value="SAISI" />
-                <span class="lineNum"></span>
-                <input class="clue"
-                    value="South African society in which therapists focus on sensory integration. (5)" />
-            </div>
-
-            <div class="line">
-                <input class="word" type="text" value="PNF" />
-                <span class="lineNum"></span>
-                <input class="clue"
-                    value="Rehabilitation method using patterned movements to restore function after a stroke. (3)" />
-            </div>
-
-            <div class="line">
-                <input class="word" type="text" value="BOBATH" />
-                <span class="lineNum"></span>
-                <input class="clue"
-                    value="Neurodevelopmental therapy approach focusing on posture and movement control. (6)" />
-            </div>
-
-            <div class="line">
-                <input class="word" type="text" value="GONIOMETER" />
-                <span class="lineNum"></span>
-                <input class="clue"
-                    value="Instrument OTs use to measure joint angles and assess range of motion. (10)" />
+                    value="A main goal of OTs is to improve ______________ in all activities of daily life. (12)" />
             </div>
         </div>
 
@@ -820,7 +713,7 @@
         wordsActive.push(spliced[0]);
 
         var pushIndex = wordsActive.length - 1,
-            rand = Math.random(),
+            rand = 0.46,
             matchArr = wordsActive[pushIndex].successfulMatches,
             matchIndex = Math.floor(rand * matchArr.length),
             matchData = matchArr[matchIndex];
@@ -890,9 +783,11 @@
 
             for (var i = 0; i < c.char.length; i++) {
                 c.char[i].index = boardMap.length;
+                // Store grid indices for each word
+                var matchingObj = wordsActive[c.char[i].wordIndex];
+                if (!matchingObj.gridIndices) matchingObj.gridIndices = [];
+                matchingObj.gridIndices.push(boardMap.length);
                 if (c.char[i].prev === null) {
-                    var matchingObj = wordsActive[c.char[i].wordIndex];
-
                     if (num === "") {
                         num = wordElementsDown.length + wordElementsAcross.length + 1;
                     }
@@ -1080,59 +975,60 @@
     // CHECK ANSWERS AND RESET LOGIC  //
     //---------------------------------//
 
-    function checkAnswers() {
-        if (!boardMap) return;
-        for (let i = 0; i < boardMap.length; i++) {
-            const c = boardMap[i];
-            if (!c.value) continue;
+    function submitAnswers() {
+        const name = document.getElementById("name").value;
+        const contact = document.getElementById("contact").value;
 
-            const input = document.querySelectorAll(".char")[i];
-            const userVal = input.value.toUpperCase();
-            const correctVal = c.value.toUpperCase();
+        // Get all words in order (Across then Down)
+        const allLines = [
+            ...document.querySelectorAll("#cluesAcross .line"),
+            ...document.querySelectorAll("#cluesDown .line")
+        ];
 
-            if (userVal === "") {
-                input.style.backgroundColor = "";
-            } else if (userVal === correctVal) {
-                input.style.backgroundColor = "lightgreen";
-            } else {
-                input.style.backgroundColor = "salmon";
+        // Get all .char inputs
+        const inputs = document.querySelectorAll('.char');
+
+        let data = {
+            Timestamp: new Date().toISOString(),
+            Name: name,
+            Contact: contact,
+        };
+
+        // Get answers for each word using gridIndices
+        let wordObjs = [...wordElementsAcross, ...wordElementsDown].map(e => {
+            // Find the matching word object from wordsActive
+            return wordsActive.find(w => w.element === e.ele);
+        });
+
+        wordObjs.forEach((wordObj, i) => {
+            let answer = '';
+            if (wordObj && wordObj.gridIndices) {
+                wordObj.gridIndices.forEach(idx => {
+                    answer += inputs[idx].value.toUpperCase() || ' ';
+                });
             }
-        }
-    }
+            data[`Answer${i + 1}`] = answer;
+        });
 
-    function resetBoard() {
-        if (!boardMap) return;
-        for (let i = 0; i < boardMap.length; i++) {
-            const c = boardMap[i];
-            if (!c.value) continue;
+        console.log("Submitting payload:", data);
 
-            const input = document.querySelectorAll(".char")[i];
-            input.value = "";
-            input.style.backgroundColor = "";
-        }
-    }
-
-    function showAnswers() {
-        if (!boardMap) return;
-        for (let i = 0; i < boardMap.length; i++) {
-            const c = boardMap[i];
-
-            if (!c.value) continue;
-            const input = document.querySelectorAll(".char")[i];
-            input.value = "";
-            input.style.backgroundColor = "";
-            input.placeholder = c.value; // optional: show letters as placeholders
-        }
+        fetch("https://sheetdb.io/api/v1/tndw5iv75b6fe", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ data: [data] })
+        })
+        .then(res => res.json())
+        .then(result => {
+            console.log("Saved to sheet:", result);
+            alert("Your answers have been submitted!");
+        })
+        .catch(err => console.error("Error saving:", err));
     }
 
     // Attach to buttons
-    const btnCheck = document.getElementById("btnCheck");
-    const btnReset = document.getElementById("btnReset");
-    const btnShow = document.getElementById("btnShow");
+    const btnSubmit = document.getElementById("btnSubmit");
 
-    btnCheck.addEventListener("click", checkAnswers);
-    btnReset.addEventListener("click", resetBoard);
-    btnShow.addEventListener("click", showAnswers);
+    btnSubmit.addEventListener("click", submitAnswers);
 </script>
 
 </html>
