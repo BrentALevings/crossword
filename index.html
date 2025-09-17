@@ -897,41 +897,34 @@
             focusIndex = Math.max(0, boardChar.char.indexOf(focusChar));
         }
 
+        // Use input event for auto-advance (mobile & desktop)
+        this.oninput = function (e) {
+            if (mode === 1) {
+                return;
+            }
+            // Accept only the first character, ignore extras
+            if (this.value.length > 1) {
+                this.value = this.value[0].toUpperCase();
+            }
+            // Move to next cell if a character is present
+            if (this.value.length === 1 && boardChar.char[focusIndex].next !== null) {
+                document.getElementsByClassName('char')[boardChar.char[focusIndex].next.index].focus();
+            }
+        };
+
+        // Retain backspace navigation for desktop
         this.onkeydown = function (e) {
             if (mode === 1) {
                 return;
             }
             var key = e.keyCode || e.which;
-
             if (key === 8) {
                 if (boardChar.char[focusIndex].prev != null) {
                     focusChar = boardChar.char[focusIndex].prev;
-
-                    var isEnd = (boardChar.char[focusIndex].next === null) ? true : false;
-
-                    document.getElementsByClassName('char')
-                    [boardChar.char[focusIndex].prev.index].focus();
-
-                    if (isEnd) {
-                        document.getElementsByClassName('char')
-                        [boardChar.char[focusIndex].index].value = "";
-                        document.getElementsByClassName('char')
-                        [boardChar.char[focusIndex].next.index].value = "";
-                    }
+                    document.getElementsByClassName('char')[boardChar.char[focusIndex].prev.index].focus();
                 }
             }
-        }
-
-        this.onkeypress = function () {
-            if (mode === 1) {
-                return;
-            }
-            if (boardChar.char[focusIndex].next !== null) {
-                focusChar = boardChar.char[focusIndex].next;
-                document.getElementsByClassName('char')
-                [boardChar.char[focusIndex].next.index].focus();
-            }
-        }
+        };
     }
 
 
