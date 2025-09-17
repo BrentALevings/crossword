@@ -3,6 +3,66 @@
 
 <head>
     <style>
+    @media (max-width: 700px) {
+        .container {
+            position: static;
+            width: 100vw;
+            min-height: 100vh;
+            padding: 0.5em;
+        }
+        .crosswordDisplay {
+            top: 0;
+        }
+        .col-lg-6 {
+            width: 100%;
+            display: block;
+            margin: 0;
+            padding: 0;
+        }
+        .clueBlock {
+            margin-bottom: 2em;
+            text-align: left;
+        }
+        .clueDirection {
+            margin-left: 0.5em;
+            font-size: 1.2em;
+        }
+        .crossword {
+            width: 100vw;
+            overflow-x: auto;
+            background: #fff;
+        }
+        .square {
+            width: 2em;
+            height: 2em;
+            font-size: 1.2em;
+        }
+        .char {
+            font-size: 1.2em;
+            width: 2em;
+            height: 2em;
+        }
+        .num {
+            font-size: 0.7em;
+        }
+        .form label, .form input {
+            display: block;
+            width: 100%;
+            font-size: 1em;
+            margin-bottom: 0.5em;
+        }
+        #printBtn, #btnSubmit, #btnGen {
+            width: 100%;
+            font-size: 1.1em;
+            padding: 1em;
+            position: static;
+            margin-bottom: 1em;
+        }
+        .row {
+            flex-direction: column;
+            align-items: stretch;
+        }
+    }
         .container {
             position: absolute;
             bottom: 0;
