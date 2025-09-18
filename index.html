@@ -3,66 +3,6 @@
 
 <head>
     <style>
-    @media (max-width: 700px) {
-        .container {
-            position: static;
-            width: 100vw;
-            min-height: 100vh;
-            padding: 0.5em;
-        }
-        .crosswordDisplay {
-            top: 0;
-        }
-        .col-lg-6 {
-            width: 100%;
-            display: block;
-            margin: 0;
-            padding: 0;
-        }
-        .clueBlock {
-            margin-bottom: 2em;
-            text-align: left;
-        }
-        .clueDirection {
-            margin-left: 0.5em;
-            font-size: 1.2em;
-        }
-        .crossword {
-            width: 100vw;
-            overflow-x: auto;
-            background: #fff;
-        }
-        .square {
-            width: 2em;
-            height: 2em;
-            font-size: 1.2em;
-        }
-        .char {
-            font-size: 1.2em;
-            width: 2em;
-            height: 2em;
-        }
-        .num {
-            font-size: 0.7em;
-        }
-        .form label, .form input {
-            display: block;
-            width: 100%;
-            font-size: 1em;
-            margin-bottom: 0.5em;
-        }
-        #printBtn, #btnSubmit, #btnGen {
-            width: 100%;
-            font-size: 1.1em;
-            padding: 1em;
-            position: static;
-            margin-bottom: 1em;
-        }
-        .row {
-            flex-direction: column;
-            align-items: stretch;
-        }
-    }
         .container {
             position: absolute;
             bottom: 0;
@@ -310,6 +250,7 @@
             }
 
             /* Hide the buttons when printing */
+            #printBtn,
             #btnSubmit,
             .top-right-buttons {
                 display: none !important;
@@ -500,14 +441,14 @@
             }
             charEleArr[i].addEventListener('mousedown', setDirectionHandler);
             charEleArr[i].addEventListener('touchstart', setDirectionHandler);
-            charEleArr[i].addEventListener('keydown', function(e) {
+            charEleArr[i].addEventListener('keydown', function (e) {
                 // Tab or arrow keys
                 if (e.key === 'Tab' || e.key === 'ArrowRight' || e.key === 'ArrowLeft' || e.key === 'ArrowUp' || e.key === 'ArrowDown') {
                     setDirectionHandler.call(this, e);
                 }
             });
 
-            charEleArr[i].addEventListener('input', function(e) {
+            charEleArr[i].addEventListener('input', function (e) {
                 // Only allow one character
                 if (this.value.length > 1) {
                     this.value = this.value[0].toUpperCase();
@@ -1127,12 +1068,12 @@
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ data: [data] })
         })
-        .then(res => res.json())
-        .then(result => {
-            console.log("Saved to sheet:", result);
-            alert("Your answers have been submitted!");
-        })
-        .catch(err => console.error("Error saving:", err));
+            .then(res => res.json())
+            .then(result => {
+                console.log("Saved to sheet:", result);
+                alert("Your answers have been submitted!");
+            })
+            .catch(err => console.error("Error saving:", err));
     }
 
     // Attach to buttons
